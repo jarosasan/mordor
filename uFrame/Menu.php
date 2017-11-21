@@ -17,7 +17,7 @@ class Menu
 				echo "<a class='btn btn-outline-light' href='/" . CONFIG['site_path'] . "/Page/show/" . $page['id'] . "'>". $page['title'] . "</a>";
 				
 			} else {
-				echo "<a class='btn btn-outline-light' href='/" . CONFIG['site_path'] . $page['body'] . "'>". $page['title'] . "</a>";
+				echo "<a class='btn btn-outline-light' href='/" . CONFIG['site_path'] ."/". $page['body'] . "'>". $page['title'] . "</a>";
 				
 
 			}

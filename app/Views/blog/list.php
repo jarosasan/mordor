@@ -28,8 +28,7 @@
     </div>
 </div>
 <div class="container">
-
-
+	
     <?php
     foreach ($data['postList'] as $post) {
        echo '<div class="row"><div class="col content">
@@ -39,7 +38,30 @@
        </h2>
        <hr>' . $post['body'] . '... <></div></div>';
    }
+   
    ?>
+	<nav aria-label="...">
+		<ul class="pagination justify-content-center">
+			
+				<?php
+					
+				if ($data['page'] > 1){
+					echo "<li class='page-item'><a class='page-link' href='/" . CONFIG['site_path'] . "/Blog/index?page=" . ($data['page']-1)  . "'>Previous</a></li> ";
+				}
+					for ($i=0; $i <= ($data['total'])-1; $i++) {
+					echo "<li class='page-item " . (( $i == ($data['page']-1)) ? 'active' : '') ."'>
+						<a class='page-link' href='/" . CONFIG['site_path'] . "/Blog/index?page=" . ($i+1)  . "'>" . ($i+1) . "<span class=\"sr-only\">(current)</span></a>
+					</li>";
+				}
+				if ($data['page'] < $data['total']){
+					echo "<li class='page-item'><a class='page-link' href='/" . CONFIG['site_path'] . "/Blog/index?page=" . ($data['page']+1)  . "'>Next</a></li> ";
+				}
+				?>
+			
+		</ul>
+	</nav>
+	
+	
 </div>
 </div>
 <script src="/<?= CONFIG['site_path']; ?>/assets/js/script.js"></script>
