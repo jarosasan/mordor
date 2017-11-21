@@ -9,10 +9,14 @@ class BlogModel
     {
         $this->db = $db;
     }
+    
+    public function getCount(){
+    	return $this->db->select("SELECT COUNT(*) as count FROM post");
+    }
 
-    public function getAll(): array
+    public function getAll($startPost, $perPages): array
     {
-        return $this->db->select("SELECT id, title, SUBSTRING(`body`, 1, 100) as body FROM post");
+        return $this->db->select("SELECT id, title, SUBSTRING(`body`, 1, 100) as body FROM post LIMIT :start, :coun", [':start'=>$startPost, ':coun'=>$perPages]);
     }
 
     public function getSingle(int $id): array

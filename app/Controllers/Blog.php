@@ -4,15 +4,30 @@ use uFrame\Controller;
 
 class Blog extends Controller
 {
-
+	
     public function index()
     {
-
+		$perPage = 3;
         // show all blog records
 
         $blogModel = $this->model("BlogModel");
-
-        $data['postList'] = $blogModel->getAll();
+        $data = $blogModel->getCount();
+        
+	    $totalPages = ceil($data[0]['count'] / $perPage);
+	    $data['total']=$totalPages;
+	    if(isset($_GET['page'])){
+	    	$page = $_GET['page'];
+	    }else{
+	    	$page = 1;
+	    }
+	    $data['page']=$page;
+		
+	    if ($page){
+		    $startPost = ($page-1) * $perPage;
+	    }else{
+		    $startPost = 0;
+	    }
+        $data['postList'] = $blogModel->getAll($startPost, $perPage);
 
         $this->view("blog/list", $data);
     
