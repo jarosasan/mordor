@@ -23,12 +23,12 @@ class Blog extends Controller
 	    $data['page']=$page;
 		
 	    if ($page){
-		    $startPost = ($page-1) * $perPage;
+		    $data['start'] = ($page-1) * $perPage;
 	    }else{
-		    $startPost = 0;
+		    $data['start'] = 0;
 	    }
-        $data['postList'] = $blogModel->getAll($startPost, $perPage);
-
+        $data['postList'] = $blogModel->getAll($data['start'], $perPage);
+		$data['index']= "index?";
         $this->view("blog/list", $data);
     
     }
@@ -49,18 +49,25 @@ class Blog extends Controller
     }
 
     public function search() {
-
+		$perPage = 2;
         if (empty($_GET['query'])) {
-
             $this->index();
-            
         }  else {
-
            $blogModel = $this->model("BlogModel");
 
-            $data['postList'] = $blogModel->search($_GET['query']);
+            $d = $blogModel->search($_GET['query']);
+	        $data['total'] = ceil(count($d) / $perPage);
+	        
+	        $page = (isset($_GET['page'])) ? $_GET['page'] : 1;
+	        $data['page'] = $page;
+	        
+	        $data['start'] = ($page) ? (($page - 1) * $perPage) : 0;
+	
 
-            $this->view("blog/list", $data);
+	        $data['postList']= array_slice($d, $data['start'], $perPage);
+	        $data['index']= "search?guery=".$_GET['query']."?";
+	        
+	        $this->view("blog/list", $data);
 
         }
 
