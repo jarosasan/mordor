@@ -16,7 +16,7 @@ class BlogModel
 
     public function getAll($startPost, $perPages): array
     {
-        return $this->db->select("SELECT id, title, SUBSTRING(`body`, 1, 100) as body FROM post LIMIT :start, :coun", [':start'=>$startPost, ':coun'=>$perPages]);
+        return $this->db->select("SELECT id, title, SUBSTRING(`body`, 1, 200) as body FROM post LIMIT :start, :coun", [':start'=>$startPost, ':coun'=>$perPages]);
     }
 
     public function getSingle(int $id): array

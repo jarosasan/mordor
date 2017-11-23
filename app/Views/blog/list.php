@@ -42,19 +42,21 @@
    ?>
 	<nav aria-label="...">
 		<ul class="pagination justify-content-center">
+			<ul class="pagination justify-content-center">
 				<?php
-					
-				if ($data['page'] > 1){
-					echo "<li class='page-item'><a class='page-link' href='/" . CONFIG['site_path'] . "/Blog/". $data['index']."page=" . ($data['page']-1)  . "'>Previous</a></li> ";
-				}
-					for ($i= 0; $i <= ($data['total'])-1; $i++) {
-					echo "<li class='page-item " . (( $i == ($data['page']-1)) ? 'active' : '') ."'>
-						<a class='page-link' href='/" . CONFIG['site_path'] . "/Blog/". $data['index']."page=" . ($i+1)  . "'>" . ($i+1) . "<span class=\"sr-only\">(current)</span></a>
+					if($data['perPage'] <= $data['co']) {
+						if ( $data['page'] > 1 ) {
+							echo "<li class='page-item'><a class='page-link' href='/" . CONFIG['site_path'] . "/Blog/" . $data['index'] . "page=" . ( $data['page'] - 1 ) . "'>Previous</a></li> ";
+						}
+						for ( $i = 0; $i <= ( $data['total'] ) - 1; $i ++ ) {
+							echo "<li class='page-item " . ( ( $i == ( $data['page'] - 1 ) ) ? 'active' : '' ) . "'>
+						<a class='page-link' href='/" . CONFIG['site_path'] . "/Blog/" . $data['index'] . "page=" . ( $i + 1 ) . "'>" . ( $i + 1 ) . "<span class=\"sr-only\">(current)</span></a>
 					</li>";
-				}
-				if ($data['page'] < $data['total']){
-					echo "<li class='page-item'><a class='page-link' href='/" . CONFIG['site_path'] . "/Blog/". $data['index']."page=" . ($data['page']+1)  . "'>Next</a></li> ";
-				}
+						}
+						if ( $data['page'] < $data['total'] ) {
+							echo "<li class='page-item'><a class='page-link' href='/" . CONFIG['site_path'] . "/Blog/" . $data['index'] . "page=" . ( $data['page'] + 1 ) . "'>Next</a></li> ";
+						}
+					}
 				?>
 		</ul>
 	</nav>
