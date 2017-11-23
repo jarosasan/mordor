@@ -27,5 +27,9 @@
 		return $this->db->select("SHOW COLUMNS FROM ".$table."");
 	}
 	
+	public function removeCont($table, $id){
+		return $this->db->remove("DELETE FROM ".$table." WHERE id = ".$id."");
+	}
+	
 		
 	}

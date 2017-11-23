@@ -25,6 +25,7 @@
 				<?php foreach($data['th'] as $i){
 						echo "<th scope='col'>". $i['Field'] ."</th>";}
 				?>
+					<th>action</th>
 				</tr>
 			</thead>
 			<tbody class="">
@@ -34,7 +35,10 @@
 							foreach ( $arr as $i ) {
 								echo "<td>" . substr($i, 0, 100) . "</td>";
 							}
-							echo"</tr>";
+							echo"<td>
+									<a href='' class='btn btn-outline-success btn-sm'  role='button' aria-disabled='true'>Edit</a>
+									<a href='/" . CONFIG['site_path'] . "/Admin/remove?i=" . $arr['id'] . "&table=". $data['table']."' class='btn btn-outline-danger btn-sm' role='button' aria-disabled='true'>Delite</a>
+								</td></tr>";
 						}
 					?>
 			</tbody>
