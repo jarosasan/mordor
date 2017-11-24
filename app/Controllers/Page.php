@@ -10,8 +10,9 @@ class Page extends Controller
        $this->show();
     }
 
-    public function show($page_name = "Home")
+    public function show()
     {
+    	$page_name = (isset($_GET['page'])) ? $_GET['page'] : "1";
 
         $pageModel = $this->model("PageModel");
 

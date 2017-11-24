@@ -67,9 +67,9 @@ class Blog extends Controller
 	        
 	        $data['start'] = ($page) ? (($page - 1) * $perPage) : 0;
 	
-
+			$data['co']= count($d);
 	        $data['postList']= array_slice($d, $data['start'], $perPage);
-	        $data['index']= "search?guery=".$_GET['query']."?";
+	        $data['index']= "search?guery=".$_GET['query']."&";
 	        $data['perPage'] = $perPage;
 	        
 	        $this->view("blog/list", $data);
