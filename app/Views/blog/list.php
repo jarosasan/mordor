@@ -28,6 +28,15 @@
 	</div>
 </div>
 <div class="container main">
+	<a href="
+	<?php
+		if ( isset( $_SESSION['username'] ) ) {
+			echo "/" . CONFIG['site_path'] . "/Auth";
+		} else {
+			echo "/" . CONFIG['site_path'] . "/Auth";
+		}
+	?>
+	" class="btn btn-outline-dark btn-lg " role="button">Add post</a>
 	<?php
 		foreach ( $data['postList'] as $post ) {
 			echo '<div class="row"><div class="col content">

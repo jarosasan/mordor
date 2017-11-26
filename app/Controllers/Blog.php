@@ -77,5 +77,37 @@ class Blog extends Controller
         }
 
     }
+	public function myList()
+	{
+		// show all blog records
+		
+		$perPage = 5;
+		$user = $_SESSION['username'];
+		
+		$blogModel = $this->model("BlogModel");
+		$count = $blogModel->getUserPostCount($user);
+		
+		$totalPages = ceil($count[0]['count'] / $perPage);
+		$data['total']=$totalPages;
+		if(isset($_GET['page'])){
+			$page = $_GET['page'];
+		}else{
+			$page = 1;
+		}
+		$data['page']=$page;
+		
+		if ($page){
+			$data['start'] = ($page-1) * $perPage;
+		}else{
+			$data['start'] = 0;
+		}
+		$data['co'] = $count[0]['count'];
+		$data['perPage'] = $perPage;
+		$data['postList'] = $blogModel->getUserPosts($user, $data['start'], $perPage);
+		$data['index']= "index?";
+		$this->view("blog/myList", $data);
+		
+	}
+ 
 
 }

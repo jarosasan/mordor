@@ -32,5 +32,14 @@ class BlogModel
             ["%$query%", "%$query%"]
         );
     }
+	
+	public function getUserPosts($user, $startPost, $perPages): array
+	{
+		return $this->db->select("SELECT * FROM post WHERE user = :user LIMIT :start, :coun", [':user'=>$user, ':start'=>$startPost, ':coun'=>$perPages]);
+	}
+	
+	public function getUserPostCount($user){
+		return $this->db->select("SELECT COUNT(*) as count FROM post WHERE user = :user", [':user'=>$user]);
+	}
 
 }

@@ -23,7 +23,9 @@
 		}
 		
 		public function login()
+		
 		{
+			print_r($_POST);
 			if(isset($_POST['username']) && $_POST['username'] != "") {
 				
 				$user = $this->model('AuthModel');
@@ -33,8 +35,10 @@
 					
 					$_SESSION['username'] = $_POST['username'];
 					setcookie("sausainis_username", $_SESSION['username'], time() + 60 * 60 *24);
-					$data['body']='';
-					$this->view("blog/list", $data);
+					$data['user']=$_SESSION['username'];
+					$this->view("blog/myList", $data);
+					
+					
 					
 				}else{
 					$data['body'] = "Bad password";

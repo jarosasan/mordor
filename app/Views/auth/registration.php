@@ -21,6 +21,7 @@
 					<input class="in" type="password" autocomplete="off"  name="password" placeholder="Password" />
 					<input class="in" type="password" autocomplete="off" name="confirm-password"  placeholder="Confirm password" />
 					<button type="submit" class="btn">Log in</button>
+					<a href="/<?= CONFIG['site_path']; ?>/Auth">Back to login</a>
 				</form>
 				<?php
 					if (isset($this->errors)) {

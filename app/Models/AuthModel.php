@@ -15,9 +15,9 @@
 			$this->db = $db;
 		}
 		
-		public function getUser(): array
+		public function getUser($username): array
 		{
-			return $this->db->select("SELECT username FROM users ");
+			return $this->db->select("SELECT * FROM users WHERE username = :username ", [':username'=>$username]);
 			
 		}
 		public function addUser(array $userData) : int {
