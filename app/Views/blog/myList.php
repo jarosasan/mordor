@@ -31,7 +31,7 @@
 	<a href="
 	<?php
 		if ( isset( $_SESSION['username'] ) ) {
-			echo "/" . CONFIG['site_path'] . "/Auth";
+			echo "/" . CONFIG['site_path'] . "/UserPosts/addPost";
 		} else {
 			echo "/" . CONFIG['site_path'] . "/Auth";
 		}
@@ -40,32 +40,24 @@
 	<?php
 		if (isset($data['postList'])) {
 			foreach ( $data['postList'] as $post ) {
-				echo '<div class="row"><div class="col content">
-                    <h2>' . $post['title'] . '</h2>'
-				     . $post['body'] . '<hr></div></div>';
+				echo "<div class='row'><div class='col content'>
+                    <h2>" . $post['title'] . "</h2>"
+				     . $post['body']
+				     . "<h3>Gallery</h3>";
+				      $gall = preg_split( '~/~', $post['image']);
+						$gal = array_shift($gall);
+						foreach ($gall as $image){
+						echo "<img src='/".  CONFIG['site_path']."/assets/image/". $image ."' alt='image' height='150px' class='img-thumbnail' >";
+						}
+				     echo "<hr><a href='' class='btn btn - outline - success btn - sm'  role='button' aria-disabled='true'>Edit</a>
+							<a href='/" . CONFIG['site_path'] . "/UserPosts/removePost?id=" . $post['id'] .  "' class='btn btn - outline - danger btn - sm' role='button' aria-disabled='true'>Delite</a>
+                    </div></div>";
 			}
 		}
 	?>
-<!--	<nav aria-label="...">-->
-<!--		<ul class="pagination justify-content-center">-->
-<!--			<ul class="pagination justify-content-center">-->
-<!--				--><?php
-//					if ( $data['perPage'] <= $data['co'] ) {
-//						if ( $data['page'] > 1 ) {
-//							echo "<li class='page-item'><a class='page-link' href='/" . CONFIG['site_path'] . "/Blog/" . $data['index'] . "page=" . ( $data['page'] - 1 ) . "'>Previous</a></li> ";
-//						}
-//						for ( $i = 0; $i <= ( $data['total'] ) - 1; $i ++ ) {
-//							echo "<li class='page-item " . ( ( $i == ( $data['page'] - 1 ) ) ? 'active' : '' ) . "'>
-//						<a class='page-link' href='/" . CONFIG['site_path'] . "/Blog/" . $data['index'] . "page=" . ( $i + 1 ) . "'>" . ( $i + 1 ) . "<span class=\"sr-only\">(current)</span></a>
-//					</li>";
-//						}
-//						if ( $data['page'] < $data['total'] ) {
-//							echo "<li class='page-item'><a class='page-link' href='/" . CONFIG['site_path'] . "/Blog/" . $data['index'] . "page=" . ( $data['page'] + 1 ) . "'>Next</a></li> ";
-//						}
-//					}
-//				?>
-<!--			</ul>-->
-<!--	</nav>-->
+	
+	
+
 
 
 </div>

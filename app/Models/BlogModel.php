@@ -41,5 +41,14 @@ class BlogModel
 	public function getUserPostCount($user){
 		return $this->db->select("SELECT COUNT(*) as count FROM post WHERE user = :user", [':user'=>$user]);
 	}
+	
+	public function savePost($user, $data, $file): int
+	{
+		return $this->db->insert("INSERT INTO post (user, title, body, image) VALUES (:user, :title, :body, :image)", [':user'=>$user, ':title'=>$data['title'], ':body'=>$data['body'], ':image'=>$file]);
+	}
+	
+	public function remove($id){
+		return $this->db->remove("DELETE FROM post WHERE id = $id");
+	}
 
 }
