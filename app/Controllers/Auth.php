@@ -34,8 +34,13 @@
 					
 					$_SESSION['username'] = $_POST['username'];
 					setcookie("sausainis_username", $_SESSION['username'], time() + 60 * 60 *24);
-					$data['user'] = $_SESSION['username'];
-					$this->controllers("UserPosts", $data);
+					$data = [];
+					$this->view("blog/myList", $data);
+//					$post = $this->controllers("UserPosts");
+//					$post->myList();
+//					redirect(base_url('your_controller/your_method'));
+					
+					
 					
 				}else{
 					$data['body'] = "Bad password";
@@ -59,7 +64,7 @@
 		{
 			if(isset($_POST['username']) && $_POST['username'] != "" ){
 				$user = $this->model('AuthModel');
-				$us = $user->getUser();
+				$us = $user->getUsers();
 				if($_POST['username'] != $us[0]['username']) {
 					if ($_POST['password'] === $_POST['confirm-password']) {
 						$_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
@@ -84,10 +89,10 @@
 		
 		public function logoutForm()
 		{
-			$data['body'] = "";
+			$data = [];
 			session_destroy();
 			$_SESSION = null;
-			$this->view("blog/list", $data);
+			$this->controllers("blog", $data);
 			
 			
 		}

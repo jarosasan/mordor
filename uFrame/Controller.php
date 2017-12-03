@@ -28,7 +28,7 @@ class Controller
         require_once "app/Views/" . $view . ".php";
     }
 	
-	protected function controllers(string $controller, array $data)
+	protected function controllers(string $controller)
 	{
 		require_once "app/Controllers/" . $controller . ".php";
 	}

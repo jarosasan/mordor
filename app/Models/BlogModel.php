@@ -10,7 +10,8 @@ class BlogModel
         $this->db = $db;
     }
     
-    public function getCount(){
+    public function getCount()
+    {
     	return $this->db->select("SELECT COUNT(*) as count FROM post");
     }
 
@@ -47,8 +48,18 @@ class BlogModel
 		return $this->db->insert("INSERT INTO post (user, title, body, image) VALUES (:user, :title, :body, :image)", [':user'=>$user, ':title'=>$data['title'], ':body'=>$data['body'], ':image'=>$file]);
 	}
 	
-	public function remove($id){
+	public function remove($id)
+	{
 		return $this->db->remove("DELETE FROM post WHERE id = $id");
 	}
-
+	
+	public function updateImage($id, $img)
+	{
+		return $this->db->update("UPDATE post SET image = :img WHERE id = :id", [':img'=>$img, ':id'=>$id]);
+	}
+	
+	public function updatePost($id, $data)
+	{
+		return $this->db->update("UPDATE post SET title = :title, body = :body WHERE id = :id", [':id'=>$id, ':title'=>$data['title'], ':body'=>$data['body']]);
+	}
 }

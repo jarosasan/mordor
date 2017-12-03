@@ -11,6 +11,19 @@
 <div class="container-fluid header">
 	<div class="container">
 		<div class="row">
+			<div class="col top">
+					<?php
+					if ( isset( $_SESSION['username'] ) ) {
+						echo "<a href='/" . CONFIG['site_path'] . "/Auth/logoutForm' class='btn btn-outline-dark btn-lg ' role='button'>Log out</a>";
+					} else {
+						echo "<a href='/" . CONFIG['site_path'] . "/Auth' class='btn btn-outline-dark btn-lg ' role='button'>Log in</a>";
+					}
+					?>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
 			<div class="col text-center">
 				<h1 class="display-3"><?= CONFIG['site_title']; ?></h1>
 				<p class="lead">A good place to live.</p><br/>
@@ -49,8 +62,8 @@
 						foreach ($gall as $image){
 						echo "<img src='/".  CONFIG['site_path']."/assets/image/". $image ."' alt='image' height='150px' class='img-thumbnail' >";
 						}
-				     echo "<hr><a href='' class='btn btn - outline - success btn - sm'  role='button' aria-disabled='true'>Edit</a>
-							<a href='/" . CONFIG['site_path'] . "/UserPosts/removePost?id=" . $post['id'] .  "' class='btn btn - outline - danger btn - sm' role='button' aria-disabled='true'>Delite</a>
+				     echo "<hr><a href='/" . CONFIG['site_path'] . "/UserPosts/editPost?id=" . $post['id'] .  "' class='btn btn - outline - success btn - sm'  role='button' aria-disabled='true'>Edit</a>
+							<a href='/" . CONFIG['site_path'] . "/UserPosts/removePost?id=" . $post['id'] .  "' class='btn btn - outline - danger btn - sm' role='button'>Delite</a>
                     </div></div>";
 			}
 		}
