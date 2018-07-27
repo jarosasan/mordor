@@ -10,9 +10,9 @@ class PageModel
         $this->db = $db;
     }
 
-    public function getPage(string $title): array
+    public function getPage(string $id): array
     {
-        return $this->db->select("SELECT * FROM pages WHERE title = :title", ["title" => $title])[0];
+        return $this->db->select("SELECT * FROM pages WHERE id = :id", [":id" => $id])[0];
     }
 
 

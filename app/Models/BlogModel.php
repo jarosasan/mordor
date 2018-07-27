@@ -10,13 +10,14 @@ class BlogModel
         $this->db = $db;
     }
     
-    public function getCount(){
+    public function getCount()
+    {
     	return $this->db->select("SELECT COUNT(*) as count FROM post");
     }
 
     public function getAll($startPost, $perPages): array
     {
-        return $this->db->select("SELECT id, title, SUBSTRING(`body`, 1, 100) as body FROM post LIMIT :start, :coun", [':start'=>$startPost, ':coun'=>$perPages]);
+        return $this->db->select("SELECT id, title, SUBSTRING(`body`, 1, 200) as body FROM post LIMIT :start, :coun", [':start'=>$startPost, ':coun'=>$perPages]);
     }
 
     public function getSingle(int $id): array
@@ -32,5 +33,33 @@ class BlogModel
             ["%$query%", "%$query%"]
         );
     }
-
+	
+	public function getUserPosts($user, $startPost, $perPages): array
+	{
+		return $this->db->select("SELECT * FROM post WHERE user = :user LIMIT :start, :coun", [':user'=>$user, ':start'=>$startPost, ':coun'=>$perPages]);
+	}
+	
+	public function getUserPostCount($user){
+		return $this->db->select("SELECT COUNT(*) as count FROM post WHERE user = :user", [':user'=>$user]);
+	}
+	
+	public function savePost($user, $data, $file): int
+	{
+		return $this->db->insert("INSERT INTO post (user, title, body, image) VALUES (:user, :title, :body, :image)", [':user'=>$user, ':title'=>$data['title'], ':body'=>$data['body'], ':image'=>$file]);
+	}
+	
+	public function remove($id)
+	{
+		return $this->db->remove("DELETE FROM post WHERE id = $id");
+	}
+	
+	public function updateImage($id, $img)
+	{
+		return $this->db->update("UPDATE post SET image = :img WHERE id = :id", [':img'=>$img, ':id'=>$id]);
+	}
+	
+	public function updatePost($id, $data)
+	{
+		return $this->db->update("UPDATE post SET title = :title, body = :body WHERE id = :id", [':id'=>$id, ':title'=>$data['title'], ':body'=>$data['body']]);
+	}
 }

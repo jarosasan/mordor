@@ -13,7 +13,8 @@ class App
 
     public function __construct($db, Log $log)
     {
-
+	    session_start();
+    	
         $this->db = $db;
         $this->log = $log;
 

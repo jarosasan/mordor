@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="/<?= CONFIG['site_path']; ?>/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/<?= CONFIG['site_path']; ?>/assets/css/style.css">
+    <link rel="stylesheet" href="/<?= CONFIG['site_path']; ?>/assets/css/css/style.css">
 </head>
 <body>
 <div class="container-fluid header">

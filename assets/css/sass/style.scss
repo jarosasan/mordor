@@ -1,0 +1,155 @@
+@import "compass/reset";
+@import "compass/support";
+@import "compass/css3";
+
+
+$color_h: rgb(157, 91, 84);
+$color: rgb(49, 53, 60);
+
+.header {
+  background-image: url("../../image/1img.jpeg");
+  background-size: cover;
+  width:100%;
+  height:160px;
+}
+
+.top-menu {
+  background-color: $color;
+  display: inline-block;
+  margin-bottom: 2rem;
+  .element {
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 1rem 20px;
+    :hover {
+      color: #9D5B54;
+      box-sizing: border-box;
+    }
+    a{
+      text-decoration: none;
+      font-size: 20px;
+      color:rgb(147, 147, 147);
+    }
+  }
+}
+.main{
+
+}
+.content {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  a {
+    text-decoration: none;
+    color:rgb(147, 147, 147);
+  }
+  h2 {
+    font-size: 26px;
+    margin-bottom:1rem;
+    color: #9D5B54;
+
+  }
+
+}
+//login form
+
+#form-auth {
+  background-image: url("../../image/Mordor_1.jpg");
+  background-size: 100%;
+
+}
+
+.wrap
+{
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.form-title {
+  font-size: 30px;
+  font-weight: 600;
+  text-align: center;
+  color: rgb(52, 58, 64);
+  margin-top: 5rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+
+input::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+  color: #2b1603;
+}
+input::-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color:    #2b1603;
+  opacity:  1;
+}
+input::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color:    #2b1603;
+  opacity:  1;
+}
+input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color:    #2b1603;
+}
+input:-ms-input-placeholder { /* Microsoft Edge */
+  color:    #2b1603;
+}
+
+input::placeholder { /* Most modern browsers support this now. */
+  color:    #2b1603;
+}
+
+.login {
+  width: 300px;
+  margin: 0 auto;
+  .in {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    width: 100%;
+    margin: 0;
+    padding: 5px 10px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #FFFFFF;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-top:5px;
+    margin-bottom: 5px;
+    color: #1a1a1a !important;
+    outline: 0;
+
+  }
+  .btn {
+    width: 100%;
+    font-size: 14px;
+    text-transform: uppercase;
+    border-radius: 1px;
+    font-weight: 500;
+    margin-top: 20px;
+    outline: 0;
+    cursor: pointer;
+    letter-spacing: 1px;
+    background-color: #b00312;
+    -webkit-transition: background-color 1000ms linear;
+    -moz-transition: background-color 1000ms linear;
+    -o-transition: background-color 1000ms linear;
+    -ms-transition: background-color 1000ms linear;
+    transition: background-color 1000ms linear;
+    :hover {
+      background-color: rgb(52, 132, 220);
+
+    }
+  }
+}
+.alert{
+  margin:20px auto;
+}
+
+
+
